@@ -1,0 +1,32 @@
+using UnityEngine;
+using System.Collections;
+
+public class SimpleCCMoving : MonoBehaviour 
+{
+
+	public CharacterController cc;
+
+	public float moveSpeed = 5;
+
+	// Use this for initialization
+	void Start () 
+	{
+	
+	}
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		MoveInputProcessing();
+	}
+
+	public void MoveInputProcessing()
+	{
+		Vector3 moveInput = new Vector3 ( Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical") );
+		Vector3 direction = moveInput.normalized * moveSpeed;
+		cc.Move( direction * Time.deltaTime );
+		
+	}
+
+
+}
