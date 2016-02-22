@@ -1,0 +1,49 @@
+using UnityEngine;
+using System.Collections;
+
+public class TestsOnCollision : MonoBehaviour 
+{
+	public string isRB = "no rigidbody";
+
+
+
+	// Use this for initialization
+	void Start () 
+	{
+		if( GetComponent<Rigidbody>()!= null)
+		{
+			isRB = "have rigidbody";
+		}
+
+		if( Physics.CheckSphere(transform.position, 1f) )
+		{
+			Debug.Log(gameObject.name + " " + "CheckSphere" + " " + isRB);
+		}
+
+	}
+	
+	// Update is called once per frame
+	void Update () 
+	{
+	
+	}
+	void OnControllerColliderHit()
+	{
+		//Debug.Log(gameObject.name + " " + Time.time);
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		Debug.Log (gameObject.name + " " + "On Trigger Enter Shot" + " " + isRB);
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log (gameObject.name + " " + "On Collider Enter Shot" + " " + isRB);
+	}
+
+	void OnCollisionStay(Collision collision)
+	{
+		Debug.Log (gameObject.name + " " + "On Collider Enter Shot" + " " + isRB);
+	}
+}
