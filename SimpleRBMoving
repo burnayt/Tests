@@ -1,0 +1,34 @@
+using UnityEngine;
+using System.Collections;
+
+public class SimpleRBMoving : MonoBehaviour 
+{
+	public float moveSpeed = 5;
+
+	public Rigidbody rbody;
+
+	private Vector3 direction;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		MoveInputProcessing();
+	
+	}
+
+	public void MoveInputProcessing()
+	{
+		Vector3 moveInput = new Vector3 ( Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical") );
+		direction = moveInput.normalized * moveSpeed;
+	}
+
+	void FixedUpdate()
+	{
+		rbody.MovePosition( rbody.position + direction* Time.fixedDeltaTime );
+	}
+}
